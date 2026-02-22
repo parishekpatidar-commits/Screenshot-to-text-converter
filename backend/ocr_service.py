@@ -14,8 +14,12 @@ import os
 # Example path after default installation:
 #   r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 # -------------------------------------------------------
-# Tesseract executable path (Windows default install path):
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# Auto-detect OS and set Tesseract path
+import platform
+if platform.system() == "Windows":
+    # Windows local development path
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# On Linux (Render/cloud), tesseract is in PATH automatically — no need to set
 
 
 def preprocess_image(image: Image.Image) -> Image.Image:
