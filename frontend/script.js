@@ -13,25 +13,25 @@
 
 // ---- Backend API URL ----
 // Change this if your backend runs on a different host/port.
-const API_URL = "http://127.0.0.1:8000/extract-text";
+const API_URL = "https://screenshot-to-text-converter.onrender.com/extract-text";
 
 // ---- DOM References ----
-const uploadZone     = document.getElementById("uploadZone");
-const fileInput      = document.getElementById("fileInput");
-const browseBtn      = document.getElementById("browseBtn");
-const fileInfo       = document.getElementById("fileInfo");
+const uploadZone = document.getElementById("uploadZone");
+const fileInput = document.getElementById("fileInput");
+const browseBtn = document.getElementById("browseBtn");
+const fileInfo = document.getElementById("fileInfo");
 const previewSection = document.getElementById("previewSection");
-const imagePreview   = document.getElementById("imagePreview");
-const extractBtn     = document.getElementById("extractBtn");
-const resetBtn       = document.getElementById("resetBtn");
-const loader         = document.getElementById("loader");
-const resultSection  = document.getElementById("resultSection");
-const textOutput     = document.getElementById("textOutput");
-const copyBtn        = document.getElementById("copyBtn");
-const downloadBtn    = document.getElementById("downloadBtn");
-const alertBox       = document.getElementById("alertBox");
-const charCount      = document.getElementById("charCount");
-const wordCount      = document.getElementById("wordCount");
+const imagePreview = document.getElementById("imagePreview");
+const extractBtn = document.getElementById("extractBtn");
+const resetBtn = document.getElementById("resetBtn");
+const loader = document.getElementById("loader");
+const resultSection = document.getElementById("resultSection");
+const textOutput = document.getElementById("textOutput");
+const copyBtn = document.getElementById("copyBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const alertBox = document.getElementById("alertBox");
+const charCount = document.getElementById("charCount");
+const wordCount = document.getElementById("wordCount");
 
 // ---- State ----
 let selectedFile = null;   // Currently selected File object
@@ -59,8 +59,8 @@ fileInput.addEventListener("change", () => {
    ============================================================ */
 
 // Prevent browser from opening the file when dropped on the page
-document.addEventListener("dragover",  (e) => e.preventDefault());
-document.addEventListener("drop",      (e) => e.preventDefault());
+document.addEventListener("dragover", (e) => e.preventDefault());
+document.addEventListener("drop", (e) => e.preventDefault());
 
 uploadZone.addEventListener("dragover", (e) => {
   e.preventDefault();
@@ -217,15 +217,15 @@ downloadBtn.addEventListener("click", () => {
 
   // Create a temporary <a> element to trigger the download
   const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement("a");
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
 
   // Use original filename (without extension) as base for .txt file
   const baseName = selectedFile
     ? selectedFile.name.replace(/\.[^/.]+$/, "")
     : "extracted-text";
 
-  a.href     = url;
+  a.href = url;
   a.download = `${baseName}-ocr.txt`;
   a.click();
 
@@ -266,17 +266,17 @@ function resetAll() {
 
 /** Toggle the loading spinner and button state */
 function setLoading(isLoading) {
-  loader.style.display      = isLoading ? "flex"   : "none";
-  extractBtn.disabled       = isLoading;
-  extractBtn.innerHTML      = isLoading
+  loader.style.display = isLoading ? "flex" : "none";
+  extractBtn.disabled = isLoading;
+  extractBtn.innerHTML = isLoading
     ? `<span class="btn-spinner"></span> Extracting…`
     : `🔍 Extract Text`;
 }
 
 /** Show a styled alert message */
 function showAlert(type, message) {
-  alertBox.className    = `alert ${type}`;
-  alertBox.innerHTML    = message;
+  alertBox.className = `alert ${type}`;
+  alertBox.innerHTML = message;
   alertBox.style.display = "flex";
 }
 
