@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== Meta & SEO ===== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Upload any screenshot or image and extract text instantly using Tesseract OCR technology. Free, fast, and privacy-friendly." />
+  <meta name="keywords" content="screenshot to text, OCR, image to text, extract text, Tesseract" />
+  <title>Screenshot to Text Converter | OCR Tool</title>
+
+  <!-- Favicon (emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>" />
+
+  <!-- Google Fonts (loaded in CSS @import as well, this is a preconnect hint) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===== Animated Background is handled by CSS body::before / ::after ===== -->
+
+  <div class="wrapper">
+
+    <!-- ══════════════════════════════════
+         HEADER
+    ══════════════════════════════════ -->
+    <header>
+      <span class="logo-icon" aria-hidden="true">🖼️</span>
+      <h1>Screenshot to Text Converter</h1>
+      <p>Upload any image · Extract text instantly with AI-powered OCR</p>
+    </header>
+
+    <!-- ══════════════════════════════════
+         MAIN CARD
+    ══════════════════════════════════ -->
+    <main class="main-card" role="main">
+
+      <!-- ── 1. Drag & Drop / Upload Zone ── -->
+      <section aria-label="Image upload area">
+
+        <div id="uploadZone" class="upload-zone" role="button" tabindex="0"
+             aria-label="Click or drag an image here to upload">
+          <span class="upload-icon" aria-hidden="true">📂</span>
+          <h2>Drag &amp; drop your image here</h2>
+          <p>or <span>click to browse</span> from your computer</p>
+          <p style="margin-top:8px; font-size:0.8rem; color: var(--text-muted);">
+            Supports PNG, JPG, BMP, TIFF, WebP, GIF
+          </p>
+
+          <!-- Hidden native file input -->
+          <input type="file" id="fileInput" accept="image/*" aria-hidden="true" />
+
+          <!-- Visible browse button -->
+          <button id="browseBtn" class="browse-btn" type="button">Browse Files</button>
+        </div>
+
+        <!-- Small tag showing file name + size after selection -->
+        <div id="fileInfo" class="file-info" role="status" aria-live="polite"></div>
+
+      </section>
+
+      <!-- ── 2. Image Preview ── -->
+      <section id="previewSection" class="preview-section" aria-label="Image preview">
+        <h3>Preview</h3>
+        <div class="image-preview-wrapper">
+          <img id="imagePreview" src="" alt="Uploaded image preview" />
+        </div>
+      </section>
+
+      <!-- ── 3. Action Buttons ── -->
+      <div class="action-area">
+
+        <!-- Extract Text button (disabled until image is selected) -->
+        <button id="extractBtn" type="button" disabled
+                aria-label="Extract text from the uploaded image">
+          🔍 Extract Text
+        </button>
+
+        <!-- Reset button (hidden until image is selected) -->
+        <button id="resetBtn" type="button" aria-label="Reset and start over">
+          🔄 Reset
+        </button>
+
+      </div>
+
+      <!-- ── 4. Loading Indicator ── -->
+      <div id="loader" class="loader" role="status" aria-live="polite" aria-label="Processing image">
+        <div class="spinner"></div>
+        <p>Processing image…</p>
+      </div>
+
+      <!-- ── 5. Alert / Error Message ── -->
+      <div id="alertBox" class="alert" role="alert" aria-live="assertive"
+           style="display:none;"></div>
+
+      <hr class="divider" />
+
+      <!-- ── 6. Result Section ── -->
+      <section id="resultSection" class="result-section"
+               aria-label="Extracted text output" aria-live="polite">
+
+        <div class="result-header">
+          <h3>Extracted Text</h3>
+
+          <div class="result-actions">
+            <!-- Copy to clipboard -->
+            <button id="copyBtn" class="icon-btn" type="button"
+                    aria-label="Copy extracted text to clipboard">
+              📋 Copy
+            </button>
+
+            <!-- Download as .txt -->
+            <button id="downloadBtn" class="icon-btn" type="button"
+                    aria-label="Download extracted text as a .txt file">
+              ⬇️ Download .txt
+            </button>
+          </div>
+        </div>
+
+        <!-- Editable textarea so users can clean up the text before copying -->
+        <textarea id="textOutput" aria-label="Extracted text" spellcheck="false"
+                  placeholder="Extracted text will appear here…"></textarea>
+
+        <!-- Character & word count stats -->
+        <div class="stats-bar" aria-live="polite">
+          <div class="stat-item">
+            Characters: <span id="charCount">0</span>
+          </div>
+          <div class="stat-item">
+            Words: <span id="wordCount">0</span>
+          </div>
+        </div>
+
+      </section>
+
+    </main><!-- /.main-card -->
+
+    <!-- ══════════════════════════════════
+         FOOTER
+    ══════════════════════════════════ -->
+    <footer>
+      <p>Built with ❤️ using <strong>FastAPI</strong> + <strong>Tesseract OCR</strong> + <strong>Pillow</strong></p>
+      <p style="margin-top:6px;">
+        Open the backend first:
+        <a href="http://127.0.0.1:8000/docs" target="_blank" rel="noopener">
+          http://127.0.0.1:8000/docs
+        </a>
+      </p>
+    </footer>
+
+  </div><!-- /.wrapper -->
+
+  <!-- Main JavaScript (loaded at bottom for performance) -->
+  <script src="script.js"></script>
+
+</body>
+</html>
