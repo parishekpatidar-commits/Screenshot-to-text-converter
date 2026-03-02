@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- ===== Meta & SEO ===== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Upload any screenshot or image and extract text instantly using Tesseract OCR technology. Free, fast, and privacy-friendly." />
+  <meta name="description"
+    content="Upload any screenshot or image and extract text instantly using Tesseract OCR technology. Free, fast, and privacy-friendly." />
   <meta name="keywords" content="screenshot to text, OCR, image to text, extract text, Tesseract" />
   <title>Screenshot to Text Converter | OCR Tool</title>
 
   <!-- Favicon (emoji) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>" />
 
   <!-- Google Fonts (loaded in CSS @import as well, this is a preconnect hint) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,7 +34,7 @@
     <header>
       <span class="logo-icon" aria-hidden="true">🖼️</span>
       <h1>Screenshot to Text Converter</h1>
-      <p>Upload any image · Extract text instantly with AI-powered OCR</p>
+      <p>Upload any image · Extract text instantly</p>
     </header>
 
     <!-- ══════════════════════════════════
@@ -43,7 +46,7 @@
       <section aria-label="Image upload area">
 
         <div id="uploadZone" class="upload-zone" role="button" tabindex="0"
-             aria-label="Click or drag an image here to upload">
+          aria-label="Click or drag an image here to upload">
           <span class="upload-icon" aria-hidden="true">📂</span>
           <h2>Drag &amp; drop your image here</h2>
           <p>or <span>click to browse</span> from your computer</p>
@@ -75,8 +78,7 @@
       <div class="action-area">
 
         <!-- Extract Text button (disabled until image is selected) -->
-        <button id="extractBtn" type="button" disabled
-                aria-label="Extract text from the uploaded image">
+        <button id="extractBtn" type="button" disabled aria-label="Extract text from the uploaded image">
           🔍 Extract Text
         </button>
 
@@ -94,28 +96,24 @@
       </div>
 
       <!-- ── 5. Alert / Error Message ── -->
-      <div id="alertBox" class="alert" role="alert" aria-live="assertive"
-           style="display:none;"></div>
+      <div id="alertBox" class="alert" role="alert" aria-live="assertive" style="display:none;"></div>
 
       <hr class="divider" />
 
       <!-- ── 6. Result Section ── -->
-      <section id="resultSection" class="result-section"
-               aria-label="Extracted text output" aria-live="polite">
+      <section id="resultSection" class="result-section" aria-label="Extracted text output" aria-live="polite">
 
         <div class="result-header">
           <h3>Extracted Text</h3>
 
           <div class="result-actions">
             <!-- Copy to clipboard -->
-            <button id="copyBtn" class="icon-btn" type="button"
-                    aria-label="Copy extracted text to clipboard">
+            <button id="copyBtn" class="icon-btn" type="button" aria-label="Copy extracted text to clipboard">
               📋 Copy
             </button>
 
             <!-- Download as .txt -->
-            <button id="downloadBtn" class="icon-btn" type="button"
-                    aria-label="Download extracted text as a .txt file">
+            <button id="downloadBtn" class="icon-btn" type="button" aria-label="Download extracted text as a .txt file">
               ⬇️ Download .txt
             </button>
           </div>
@@ -123,7 +121,7 @@
 
         <!-- Editable textarea so users can clean up the text before copying -->
         <textarea id="textOutput" aria-label="Extracted text" spellcheck="false"
-                  placeholder="Extracted text will appear here…"></textarea>
+          placeholder="Extracted text will appear here…"></textarea>
 
         <!-- Character & word count stats -->
         <div class="stats-bar" aria-live="polite">
@@ -139,18 +137,7 @@
 
     </main><!-- /.main-card -->
 
-    <!-- ══════════════════════════════════
-         FOOTER
-    ══════════════════════════════════ -->
-    <footer>
-      <p>Built with ❤️ using <strong>FastAPI</strong> + <strong>Tesseract OCR</strong> + <strong>Pillow</strong></p>
-      <p style="margin-top:6px;">
-        Open the backend first:
-        <a href="http://127.0.0.1:8000/docs" target="_blank" rel="noopener">
-          http://127.0.0.1:8000/docs
-        </a>
-      </p>
-    </footer>
+
 
   </div><!-- /.wrapper -->
 
@@ -158,4 +145,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>
